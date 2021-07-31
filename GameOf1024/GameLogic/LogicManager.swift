@@ -72,13 +72,15 @@ extension LogicManager {
          1. remove Spcaes()
          2. Merge (destination = source + destination)
          3. source = 0
-         4. remove Spcaes()
+         4. Generate New Number
+         5. remove Spcaes()
          */
         
         var board = self.removeSpaces(board: currentBoard, direction: direction)
         board = self.mergeIfPossible(board: board, direction: direction)
         board = removeSpaces(board: board, direction: direction)
         board = self.generateNumberAtRandomPlace(board: board)
+        self.printTheBoard(board: board)
         return board
     }
     
@@ -252,5 +254,4 @@ extension LogicManager {
         
         print("---------------")
     }
-    
 }

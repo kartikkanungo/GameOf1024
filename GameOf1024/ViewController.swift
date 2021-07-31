@@ -14,19 +14,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         var board = logicManager.getAFreshBoard()
         logicManager.printTheBoard(board: board)
-//        board = logicManager.execute(move: .right, currentBoard: board)
-//        logicManager.printTheBoard(board: board)
-//        board = logicManager.execute(move: .left, currentBoard: board)
-//        logicManager.printTheBoard(board: board)
-//        board = logicManager.execute(move: .down, currentBoard: board)
-//        logicManager.printTheBoard(board: board)
         board = logicManager.execute(move: .down, currentBoard: board)
-        logicManager.printTheBoard(board: board)
         board = logicManager.execute(move: .left, currentBoard: board)
-        logicManager.printTheBoard(board: board)
-        
     }
-
-
 }
 
