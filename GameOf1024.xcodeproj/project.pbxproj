@@ -13,6 +13,7 @@
 		89B9363B26B57BD20004E87B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B9363926B57BD20004E87B /* Main.storyboard */; };
 		89B9363D26B57BD40004E87B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89B9363C26B57BD40004E87B /* Assets.xcassets */; };
 		89B9364026B57BD40004E87B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89B9363E26B57BD40004E87B /* LaunchScreen.storyboard */; };
+		89B9364926B57E2F0004E87B /* LogicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B9364826B57E2F0004E87B /* LogicManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		89B9363C26B57BD40004E87B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89B9363F26B57BD40004E87B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89B9364126B57BD40004E87B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89B9364826B57E2F0004E87B /* LogicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +61,21 @@
 				89B9363326B57BD20004E87B /* AppDelegate.swift */,
 				89B9363526B57BD20004E87B /* SceneDelegate.swift */,
 				89B9363726B57BD20004E87B /* ViewController.swift */,
+				89B9364B26B57E3D0004E87B /* GameLogic */,
 				89B9363926B57BD20004E87B /* Main.storyboard */,
 				89B9363C26B57BD40004E87B /* Assets.xcassets */,
 				89B9363E26B57BD40004E87B /* LaunchScreen.storyboard */,
 				89B9364126B57BD40004E87B /* Info.plist */,
 			);
 			path = GameOf1024;
+			sourceTree = "<group>";
+		};
+		89B9364B26B57E3D0004E87B /* GameLogic */ = {
+			isa = PBXGroup;
+			children = (
+				89B9364826B57E2F0004E87B /* LogicManager.swift */,
+			);
+			path = GameLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			files = (
 				89B9363826B57BD20004E87B /* ViewController.swift in Sources */,
 				89B9363426B57BD20004E87B /* AppDelegate.swift in Sources */,
+				89B9364926B57E2F0004E87B /* LogicManager.swift in Sources */,
 				89B9363626B57BD20004E87B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
