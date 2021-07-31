@@ -79,6 +79,16 @@ extension LogicManager {
     }
     
     private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
+        switch direction {
+        case .up:
+            break
+        case .down:
+            break
+        case .right:
+            break
+        case .left:
+            break
+        }
         
         return board
     }
