@@ -28,6 +28,8 @@ import Foundation
  
  */
 
+typealias GameBoard = [[Int]]
+// MARK:- Move Direction
 enum Move {
     case up
     case down
@@ -35,6 +37,12 @@ enum Move {
     case left
 }
 
-
-
-
+// MARK:- Logic Manager
+struct LogicManager {
+    // Input: Direction and the matrix with the current state of the game
+    // OutPut: Matrix after executing the direction move
+    public func execute(move: Move, currentBoard: GameBoard) -> GameBoard {
+        // Add the logic here
+        return currentBoard
+    }
+}
