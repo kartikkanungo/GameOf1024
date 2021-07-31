@@ -32,6 +32,7 @@ import Foundation
 
 public typealias GameBoard = [[Int]]
 public typealias PositionIndex = [Int]
+
 // MARK:- Move Direction
 public enum Move {
     case up
