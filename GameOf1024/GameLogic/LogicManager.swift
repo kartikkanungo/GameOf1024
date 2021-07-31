@@ -75,19 +75,72 @@ extension LogicManager {
          4. remove Spcaes()
          */
         
-        return currentBoard
+        var board = self.removeSpaces(board: currentBoard, direction: direction)
+        
+        return board
     }
     
     private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
+        var board = board
+        print(direction)
         switch direction {
         case .up:
-            break
+            for col in 0..<board.first!.count {
+                for row in 1..<board.count {
+                    if board[row][col] != 0  {
+                        for i in (0..<row) {
+                            if board[i][col] == 0 {
+                                board[i][col] = board[row][col]
+                                board[row][col] = 0
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            
         case .down:
-            break
+            for col in 0..<board.first!.count {
+                for row in (0..<(board.count - 1)).reversed() {
+                    if board[row][col] != 0  {
+                        for i in (row..<board.count).reversed() {
+                            if board[i][col] == 0 {
+                                board[i][col] = board[row][col]
+                                board[row][col] = 0
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+
         case .right:
-            break
+            for row in 0..<(board.count) {
+                for col in (0..<(board.count - 1)).reversed() {
+                    if board[row][col] != 0 {
+                        for i in (col..<board.count).reversed() {
+                            if board[row][i] == 0 {
+                                board[row].swapAt(col, i)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+                
         case .left:
-            break
+            for row in 0..<(board.count) {
+                for col in 1..<board.count {
+                    if board[row][col] != 0 {
+                        for i in 0..<col {
+                            if board[row][i] == 0 {
+                                board[row].swapAt(col, i)
+                                break
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         return board
@@ -154,5 +207,8 @@ extension LogicManager {
         for row in 0..<board.count {
             print(board[row])
         }
+        
+        print("---------------")
     }
+    
 }
