@@ -30,10 +30,10 @@ import Foundation
  
  */
 
-typealias GameBoard = [[Int]]
-typealias PositionIndex = [Int]
+public typealias GameBoard = [[Int]]
+public typealias PositionIndex = [Int]
 // MARK:- Move Direction
-enum Move {
+public enum Move {
     case up
     case down
     case right
@@ -41,7 +41,7 @@ enum Move {
 }
 
 // MARK:- Logic Manager
-struct LogicManager {
+public struct LogicManager {
     // Input: Direction and the matrix with the current state of the game
     // OutPut: Matrix after executing the direction move
     private var index: [[Int]]
@@ -63,6 +63,7 @@ struct LogicManager {
 // MARK:- Execute a move
 extension LogicManager {
     public func execute(move: Move, currentBoard: GameBoard) -> GameBoard {
+        print(move)
         return self.makeAMove(direction: move, currentBoard: currentBoard)
     }
     
@@ -202,6 +203,7 @@ extension LogicManager {
         var board = self.getZerosBoard()
         board = self.generateNumberAtRandomPlace(board: board)
         board = self.generateNumberAtRandomPlace(board: board)
+        self.printTheBoard(board: board)
         return board
     }
     
