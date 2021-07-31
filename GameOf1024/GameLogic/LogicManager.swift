@@ -44,7 +44,6 @@ enum Move {
 struct LogicManager {
     // Input: Direction and the matrix with the current state of the game
     // OutPut: Matrix after executing the direction move
-    
     private var index: [[Int]]
     
     init() {
@@ -61,15 +60,32 @@ struct LogicManager {
     }
 }
 
-// MARK:- Execute move Methods
+// MARK:- Execute a move
 extension LogicManager {
     public func execute(move: Move, currentBoard: GameBoard) -> GameBoard {
         return self.makeAMove(direction: move, currentBoard: currentBoard)
     }
     
     private func makeAMove(direction: Move, currentBoard: GameBoard) -> GameBoard {
+        /*
+         Consists of:
+         1. remove Spcaes()
+         2. Merge (destination = source + destination)
+         3. source = 0
+         4. remove Spcaes()
+         */
         
         return currentBoard
+    }
+    
+    private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
+        
+        return board
+    }
+    
+    private func mergeIfPossible(board: GameBoard, direction: Move) -> GameBoard {
+        // if possible make source as zero here
+        return board
     }
 }
 
