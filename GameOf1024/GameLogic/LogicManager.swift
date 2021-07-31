@@ -73,6 +73,23 @@ extension LogicManager {
     }
 }
 
+// MARK:- Generate a fresh game
+extension LogicManager {
+    public mutating func getAFreshBoard() -> GameBoard {
+        var board = self.getZerosBoard()
+        board = self.generateNumberAtRandomPlace(board: board)
+        board = self.generateNumberAtRandomPlace(board: board)
+        return board
+    }
+    
+    private func getZerosBoard() -> GameBoard {
+        let board = [[0,0,0,0],
+                     [0,0,0,0],
+                     [0,0,0,0],
+                     [0,0,0,0]]
+        return board
+    }
+}
 
 // MARK:- Random values generator
 extension LogicManager {
