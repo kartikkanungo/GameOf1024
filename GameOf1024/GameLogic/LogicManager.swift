@@ -113,7 +113,7 @@ extension LogicManager {
         return availablepositions
     }
     
-    private func getRandomPosition(from array: [[Int]]) ->  [Int] {
+    private func getRandomPosition(from array: GameBoard) ->  PositionIndex {
         return array.randomElement()!
     }
     
