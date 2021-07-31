@@ -76,13 +76,14 @@ extension LogicManager {
          */
         
         var board = self.removeSpaces(board: currentBoard, direction: direction)
-        
+        board = self.mergeIfPossible(board: board, direction: direction)
+        board = removeSpaces(board: board, direction: direction)
+        board = self.generateNumberAtRandomPlace(board: board)
         return board
     }
     
     private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
         var board = board
-        print(direction)
         switch direction {
         case .up:
             for col in 0..<board.first!.count {
@@ -147,7 +148,48 @@ extension LogicManager {
     }
     
     private func mergeIfPossible(board: GameBoard, direction: Move) -> GameBoard {
-        // if possible make source as zero here
+        var board = board
+        switch direction {
+        case .up:
+            for col in 0..<board.first!.count {
+                for row in 1..<board.count {
+                    if board[row][col] == board[row - 1][col] {
+                        board[row - 1][col] += board[row][col]
+                        board[row][col] = 0
+                    }
+                }
+            }
+            
+        case .down:
+            for col in 0..<board.first!.count {
+                for row in (0..<(board.count - 1)).reversed() {
+                    if board[row][col] == board[row + 1][col] {
+                        board[row + 1][col] += board[row][col]
+                        board[row][col] = 0
+                    }
+                }
+            }
+            
+        case .right:
+            for row in 0..<(board.count) {
+                for col in (0..<(board.count - 1)).reversed() {
+                    if board[row][col] == board[row][col + 1] {
+                        board[row][col + 1] += board[row][col]
+                        board[row][col] = 0
+                    }
+                }
+            }
+            
+        case .left:
+            for row in 0..<(board.count) {
+                for col in 1..<board.count {
+                    if board[row][col] == board[row][col - 1] {
+                        board[row][col - 1] += board[row][col]
+                        board[row][col] = 0
+                    }
+                }
+            }
+        }
         return board
     }
 }
