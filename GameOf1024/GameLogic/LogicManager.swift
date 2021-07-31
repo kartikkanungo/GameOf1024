@@ -28,3 +28,13 @@ import Foundation
  
  */
 
+enum Move {
+    case up
+    case down
+    case right
+    case left
+}
+
+
+
+
