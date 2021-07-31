@@ -129,7 +129,7 @@ extension LogicManager {
     
     private func getAvailablePositions(board: GameBoard) -> [PositionIndex] {
         var availablepositions: [PositionIndex] = []
-        for i in 0...board.count {
+        for i in 0..<board.count {
             for j in 0..<board.first!.count {
                 if board[i][j] == 0 {
                     availablepositions.append([i,j])
@@ -145,5 +145,14 @@ extension LogicManager {
     
     private func getRandomTwoOrFour() -> Int {
         return [2,4].randomElement()!
+    }
+}
+
+// MARK:- Print Board
+extension LogicManager {
+    public func printTheBoard(board: GameBoard) {
+        for row in 0..<board.count {
+            print(board[row])
+        }
     }
 }
