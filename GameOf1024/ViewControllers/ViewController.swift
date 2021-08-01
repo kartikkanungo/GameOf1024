@@ -8,18 +8,46 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var viewModel: BoardViewModel = BoardViewModel()
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    lazy var viewModel: BoardViewModel = BoardViewModel(postMoveDelegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.execute(move: .left)
-        self.viewModel.execute(move: .up)
-        self.viewModel.execute(move: .down)
-        self.viewModel.execute(move: .right)
-        self.viewModel.execute(move: .left)
-        self.viewModel.execute(move: .up)
-        self.viewModel.execute(move: .down)
-        self.viewModel.execute(move: .right)
+        self.executeMoves()
+    }
+    
+    func executeMoves() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.viewModel.playMove(direction: .up)
+            self.viewModel.playMove(direction: .down)
+            self.viewModel.playMove(direction: .left)
+            self.viewModel.playMove(direction: .right)
+            self.viewModel.playMove(direction: .left)
+            self.viewModel.playMove(direction: .up)
+        }
     }
 }
 
+extension ViewController: PostMoveDelegate{
+    func updateBoard() {
+        
+    }
+    
+    func updateScore(score: String) {
+        self.scoreLabel.text = score
+    }
+    
+    func gameOver(message: String) {
+        let alert = UIAlertController(title: "Hi Player",
+                                      message: message,
+                                      preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cool! Reset The Game", style: .default, handler: { [weak self] action in
+            self?.viewModel.resetTheGame()
+//            executeMoves()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+}

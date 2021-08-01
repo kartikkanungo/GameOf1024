@@ -63,12 +63,12 @@ public struct LogicManager {
 
 // MARK:- Execute a move
 extension LogicManager {
-    public func execute(move: Move, currentBoard: GameBoard) -> GameBoard {
+    public func execute(move: Move, currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
         print(move)
         return self.makeAMove(direction: move, currentBoard: currentBoard)
     }
     
-    private func makeAMove(direction: Move, currentBoard: GameBoard) -> GameBoard {
+    private func makeAMove(direction: Move, currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
         /*
          Consists of:
          1. remove Spcaes()
@@ -77,13 +77,14 @@ extension LogicManager {
          4. Generate New Number
          5. remove Spcaes()
          */
-        
+        var scoreFortheMove = 0
+        var numberGenerationSuccessful = false
         var board = self.removeSpaces(board: currentBoard, direction: direction)
-        board = self.mergeIfPossible(board: board, direction: direction)
+        (board, scoreFortheMove) = self.mergeIfPossible(board: board, direction: direction)
         board = removeSpaces(board: board, direction: direction)
-        board = self.generateNumberAtRandomPlace(board: board)
+        (board, numberGenerationSuccessful) = self.generateNumberAtRandomPlace(board: board)
         self.printTheBoard(board: board)
-        return board
+        return (board, scoreFortheMove, numberGenerationSuccessful)
     }
     
     private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
@@ -151,13 +152,15 @@ extension LogicManager {
         return board
     }
     
-    private func mergeIfPossible(board: GameBoard, direction: Move) -> GameBoard {
+    private func mergeIfPossible(board: GameBoard, direction: Move) -> (GameBoard, Int) {
+        var scoreForTheMove = 0
         var board = board
         switch direction {
         case .up:
             for col in 0..<board.first!.count {
                 for row in 1..<board.count {
-                    if board[row][col] == board[row - 1][col] {
+                    if board[row][col] != 0 && (board[row][col] == board[row - 1][col]) {
+                        scoreForTheMove += (board[row][col]) * 2
                         board[row - 1][col] += board[row][col]
                         board[row][col] = 0
                     }
@@ -167,7 +170,8 @@ extension LogicManager {
         case .down:
             for col in 0..<board.first!.count {
                 for row in (0..<(board.count - 1)).reversed() {
-                    if board[row][col] == board[row + 1][col] {
+                    if board[row][col] != 0 && (board[row][col] == board[row + 1][col]) {
+                        scoreForTheMove += (board[row][col]) * 2
                         board[row + 1][col] += board[row][col]
                         board[row][col] = 0
                     }
@@ -177,7 +181,8 @@ extension LogicManager {
         case .right:
             for row in 0..<(board.count) {
                 for col in (0..<(board.count - 1)).reversed() {
-                    if board[row][col] == board[row][col + 1] {
+                    if board[row][col] != 0 && (board[row][col] == board[row][col + 1]) {
+                        scoreForTheMove += (board[row][col]) * 2
                         board[row][col + 1] += board[row][col]
                         board[row][col] = 0
                     }
@@ -187,14 +192,15 @@ extension LogicManager {
         case .left:
             for row in 0..<(board.count) {
                 for col in 1..<board.count {
-                    if board[row][col] == board[row][col - 1] {
+                    if board[row][col] != 0 && (board[row][col] == board[row][col - 1]) {
+                        scoreForTheMove += (board[row][col]) * 2
                         board[row][col - 1] += board[row][col]
                         board[row][col] = 0
                     }
                 }
             }
         }
-        return board
+        return (board, scoreForTheMove)
     }
 }
 
@@ -202,29 +208,37 @@ extension LogicManager {
 extension LogicManager {
     public mutating func getAFreshBoard() -> GameBoard {
         var board = self.getZerosBoard()
-        board = self.generateNumberAtRandomPlace(board: board)
-        board = self.generateNumberAtRandomPlace(board: board)
+//        board = self.generateNumberAtRandomPlace(board: board)
+//        board = self.generateNumberAtRandomPlace(board: board)
         self.printTheBoard(board: board)
         return board
     }
     
     private func getZerosBoard() -> GameBoard {
-        let board = [[0,0,0,0],
-                     [0,0,0,0],
-                     [0,0,0,0],
-                     [0,0,0,0]]
+        let board = [[4,15,16,17],
+                     [2,3,5,6],
+                     [10,9,8,7],
+                     [11,12,13,14]]
         return board
     }
 }
 
 // MARK:- Random values generator
 extension LogicManager {
-    private func generateNumberAtRandomPlace(board: GameBoard) -> GameBoard {
+    private func generateNumberAtRandomPlace(board: GameBoard) -> (GameBoard, Bool) {
         var gameBoard = board
         let availablepositions = self.getAvailablePositions(board: board)
-        let index = self.getRandomPosition(from: availablepositions)
-        gameBoard[index.first!][index.last!] = self.getRandomTwoOrFour()
-        return gameBoard
+        var index: PositionIndex?
+        var numberGenerationSuccessful = false
+        (index, numberGenerationSuccessful) = self.getRandomPosition(from: availablepositions)
+        
+        if let generatedIndex = index,
+           !generatedIndex.isEmpty,
+           numberGenerationSuccessful {
+            gameBoard[generatedIndex.first!][generatedIndex.last!] = self.getRandomTwoOrFour()
+        }
+        
+        return (gameBoard, numberGenerationSuccessful)
     }
     
     private func getAvailablePositions(board: GameBoard) -> [PositionIndex] {
@@ -239,8 +253,11 @@ extension LogicManager {
         return availablepositions
     }
     
-    private func getRandomPosition(from array: GameBoard) ->  PositionIndex {
-        return array.randomElement()!
+    private func getRandomPosition(from array: GameBoard) ->  (PositionIndex? ,Bool) {
+        if let position = array.randomElement() {
+            return (position, true)
+        }
+        return (nil, false)
     }
     
     private func getRandomTwoOrFour() -> Int {
