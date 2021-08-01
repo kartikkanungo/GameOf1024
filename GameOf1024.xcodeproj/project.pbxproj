@@ -66,8 +66,8 @@
 			children = (
 				89B9363326B57BD20004E87B /* AppDelegate.swift */,
 				89B9363526B57BD20004E87B /* SceneDelegate.swift */,
-				89B9365526B7473E0004E87B /* TileCollectionViewCell.swift */,
-				89B9365926B751D40004E87B /* Theme.swift */,
+				89B9365C26B753BF0004E87B /* CollectionViewCell */,
+				89B9365E26B753D60004E87B /* Theme */,
 				89B9365126B5F1610004E87B /* ViewControllers */,
 				89B9365026B5F1510004E87B /* ViewModel */,
 				89B9364B26B57E3D0004E87B /* GameLogic */,
@@ -101,6 +101,22 @@
 				89B9363726B57BD20004E87B /* ViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		89B9365C26B753BF0004E87B /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				89B9365526B7473E0004E87B /* TileCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		89B9365E26B753D60004E87B /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				89B9365926B751D40004E87B /* Theme.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

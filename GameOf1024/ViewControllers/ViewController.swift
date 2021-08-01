@@ -83,8 +83,8 @@ extension ViewController: PostMoveDelegate{
         self.scoreLabel.text = score
     }
     
-    func gameOver(message: String) {
-        let alert = UIAlertController(title: "Hi Player",
+    func gameOver(message: String, title: String, ctaString: String) {
+        let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: UIAlertController.Style.alert)
         

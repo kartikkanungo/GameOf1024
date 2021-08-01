@@ -11,7 +11,7 @@ import UIKit
 protocol PostMoveDelegate {
     func updateBoard()
     func updateScore(score: String)
-    func gameOver(message: String)
+    func gameOver(message: String, title: String, ctaString: String)
 }
 
 struct BoardViewModel {
@@ -61,9 +61,13 @@ extension BoardViewModel {
         case .canPlay:
             self.execute(move: direction)
         case .won:
-            self.postMoveDelegate.gameOver(message: "Congrats!")
+            self.postMoveDelegate.gameOver(message: Constants.winningMessage.rawValue,
+                                           title: Constants.winningTitle.rawValue,
+                                           ctaString: Constants.winningCTA.rawValue)
         case .lost:
-            self.postMoveDelegate.gameOver(message: "Sorry! You Lost!")
+            self.postMoveDelegate.gameOver(message: Constants.lostMessage.rawValue,
+                                           title: Constants.lostTitle.rawValue,
+                                           ctaString: Constants.lostCTA.rawValue)
         }
     }
     
@@ -135,5 +139,17 @@ extension BoardViewModel {
         self.currentScore = 0
         self.currentStatus = .freshGame
         self.postMoveDelegate.updateScore(score: "0")
+        self.postMoveDelegate.updateBoard()
     }
+}
+
+enum Constants: String {
+    case winningMessage = "Congrats!"
+    case winningTitle = "woooohoooo"
+    case winningCTA = "Play Again!"
+    
+    case lostMessage = "Sorry :( You lost"
+    case lostTitle = "oh No! "
+    case lostCTA = "Cool! Let me try again"
+    
 }
