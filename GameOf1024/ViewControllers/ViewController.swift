@@ -39,6 +39,8 @@ class ViewController: UIViewController {
     @IBAction func resetButtonAction(_ sender: Any) {
         self.viewModel.resetTheGame()
     }
+    
+    
 }
 
 extension ViewController: PostMoveDelegate{
