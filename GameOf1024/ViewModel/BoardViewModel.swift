@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-
+protocol PostMoveDelegate {
+    func updateBoard()
+    func updateScore(score: String)
+    func gameOver(message: String)
+}
 
 struct BoardViewModel {
     private enum CurrentStatus {
@@ -58,7 +62,10 @@ struct BoardViewModel {
     public func getTheCurrentScore() -> String {
         return String(self.currentScore)
     }
-    
+}
+
+//MARK:- Execute Moves
+extension BoardViewModel {
     public mutating func playMove(direction: Move) {
         switch currentStatus {
         case .freshGame:
@@ -69,7 +76,6 @@ struct BoardViewModel {
             break
         case .lost:
             break
-            
         }
     }
     
@@ -77,12 +83,13 @@ struct BoardViewModel {
         var scoreFortheMove = 0
         var numberGenerationSuccessful = false
         (self.board, scoreFortheMove, numberGenerationSuccessful) = self.logicManager.execute(move: move,
-                                                                                 currentBoard: self.board)
+                                                                                              currentBoard: self.board)
         self.postMakingAMove(numberGenerationSuccessful: numberGenerationSuccessful,
                              scoreFortheMove: scoreFortheMove)
     }
     
-    private mutating func postMakingAMove(numberGenerationSuccessful: Bool, scoreFortheMove: Int) {
+    private mutating func postMakingAMove(numberGenerationSuccessful: Bool,
+                                          scoreFortheMove: Int) {
         if !numberGenerationSuccessful &&
             !self.checkIfMergeIsPossible() {
             self.currentStatus = .lost
@@ -102,7 +109,7 @@ struct BoardViewModel {
                     (board[row][col] == board[row][col + 1])  {
                     return true
                 }
-                    
+                
                 if (col - 1) >= 0  &&
                     (board[row][col] == board[row][col - 1]) {
                     return true
@@ -118,7 +125,7 @@ struct BoardViewModel {
                     return true
                 }
             }
-   
+            
         }
         return false
     }
@@ -141,10 +148,4 @@ struct BoardViewModel {
         self.currentStatus = .freshGame
         self.postMoveDelegate.updateScore(score: "0")
     }
-}
-
-protocol PostMoveDelegate {
-    func updateBoard()
-    func updateScore(score: String)
-    func gameOver(message: String)
 }

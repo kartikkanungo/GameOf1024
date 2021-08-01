@@ -63,12 +63,14 @@ public struct LogicManager {
 
 // MARK:- Execute a move
 extension LogicManager {
-    public func execute(move: Move, currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
-        print(move)
-        return self.makeAMove(direction: move, currentBoard: currentBoard)
+    public func execute(move: Move,
+                        currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
+        return self.makeAMove(direction: move,
+                              currentBoard: currentBoard)
     }
     
-    private func makeAMove(direction: Move, currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
+    private func makeAMove(direction: Move,
+                           currentBoard: GameBoard) -> (GameBoard, Int, Bool) {
         /*
          Consists of:
          1. remove Spcaes()
@@ -77,17 +79,22 @@ extension LogicManager {
          4. Generate New Number
          5. remove Spcaes()
          */
+        print(direction)
         var scoreFortheMove = 0
         var numberGenerationSuccessful = false
-        var board = self.removeSpaces(board: currentBoard, direction: direction)
-        (board, scoreFortheMove) = self.mergeIfPossible(board: board, direction: direction)
-        board = removeSpaces(board: board, direction: direction)
+        var board = self.removeSpaces(board: currentBoard,
+                                      direction: direction)
+        (board, scoreFortheMove) = self.mergeIfPossible(board: board,
+                                                        direction: direction)
+        board = self.removeSpaces(board: board,
+                             direction: direction)
         (board, numberGenerationSuccessful) = self.generateNumberAtRandomPlace(board: board)
         self.printTheBoard(board: board)
         return (board, scoreFortheMove, numberGenerationSuccessful)
     }
     
-    private func removeSpaces(board: GameBoard, direction: Move) -> GameBoard {
+    private func removeSpaces(board: GameBoard,
+                              direction: Move) -> GameBoard {
         var board = board
         switch direction {
         case .up:
@@ -152,7 +159,8 @@ extension LogicManager {
         return board
     }
     
-    private func mergeIfPossible(board: GameBoard, direction: Move) -> (GameBoard, Int) {
+    private func mergeIfPossible(board: GameBoard,
+                                 direction: Move) -> (GameBoard, Int) {
         var scoreForTheMove = 0
         var board = board
         switch direction {
