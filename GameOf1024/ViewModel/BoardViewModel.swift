@@ -96,8 +96,8 @@ extension BoardViewModel {
             return
         }
         self.currentScore += scoreFortheMove
-        postMoveDelegate.updateBoard()
-        postMoveDelegate.updateScore(score: String(self.currentScore))
+        self.postMoveDelegate.updateBoard()
+        self.postMoveDelegate.updateScore(score: String(self.currentScore))
         self.checkIfUserWon()
         print(self.currentScore)
     }

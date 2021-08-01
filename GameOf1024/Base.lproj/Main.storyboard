@@ -26,15 +26,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-iK-eNt">
+                                <rect key="frame" x="318" y="84" width="80" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="B9k-PK-NGX"/>
+                                    <constraint firstAttribute="width" constant="80" id="auT-Le-dly"/>
+                                </constraints>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sKg-Y7-CQJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mKl-iK-eNt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="0S1-al-zuX"/>
                             <constraint firstItem="WPh-eu-Tpm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="KVA-lf-lgR"/>
                             <constraint firstItem="WPh-eu-Tpm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aU2-1N-Csr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mKl-iK-eNt" secondAttribute="trailing" constant="16" id="nN9-kO-QD4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="resetButton" destination="mKl-iK-eNt" id="zpf-AK-I6v"/>
                         <outlet property="scoreLabel" destination="WPh-eu-Tpm" id="6Jh-VC-n8B"/>
                     </connections>
                 </viewController>

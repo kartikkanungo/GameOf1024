@@ -9,11 +9,59 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
     
     lazy var viewModel: BoardViewModel = BoardViewModel(postMoveDelegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
+        self.executeMoves()
         self.executeMoves()
     }
     
@@ -26,6 +74,10 @@ class ViewController: UIViewController {
             self.viewModel.playMove(direction: .left)
             self.viewModel.playMove(direction: .up)
         }
+    }
+    
+    @IBAction func resetButtonAction(_ sender: Any) {
+        self.viewModel.resetTheGame()
     }
 }
 
