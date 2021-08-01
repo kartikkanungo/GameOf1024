@@ -15,54 +15,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.applyTheme()
         self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
-        self.executeMoves()
+    }
+    
+    func applyTheme() {
+        resetButton.layer.borderWidth = 1
+        resetButton.layer.cornerRadius = 4
+        resetButton.layer.borderColor = UIColor.black.cgColor
     }
     
     func executeMoves() {
@@ -97,7 +57,6 @@ extension ViewController: PostMoveDelegate{
         
         alert.addAction(UIAlertAction(title: "Cool! Reset The Game", style: .default, handler: { [weak self] action in
             self?.viewModel.resetTheGame()
-//            executeMoves()
         }))
         
         self.present(alert, animated: true, completion: nil)
