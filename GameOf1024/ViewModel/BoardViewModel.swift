@@ -44,7 +44,7 @@ struct BoardViewModel {
     }
     
     init(logicManager: LogicManager = LogicManager(),
-         goal: Int = 8,
+         goal: Int = 1024,
          currentScore: Int = 0,
          postMoveDelegate: PostMoveDelegate) {
         self.logicManager = logicManager
