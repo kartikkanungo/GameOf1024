@@ -208,17 +208,17 @@ extension LogicManager {
 extension LogicManager {
     public mutating func getAFreshBoard() -> GameBoard {
         var board = self.getZerosBoard()
-//        board = self.generateNumberAtRandomPlace(board: board)
-//        board = self.generateNumberAtRandomPlace(board: board)
+        (board, _) = self.generateNumberAtRandomPlace(board: board)
+        (board, _) = self.generateNumberAtRandomPlace(board: board)
         self.printTheBoard(board: board)
         return board
     }
     
     private func getZerosBoard() -> GameBoard {
-        let board = [[4,15,16,17],
-                     [2,3,5,6],
-                     [10,9,8,7],
-                     [11,12,13,14]]
+        let board = [[0,0,0,0],
+                     [0,0,0,0],
+                     [0,0,0,0],
+                     [0,0,0,0]]
         return board
     }
 }

@@ -8,14 +8,16 @@
 import Foundation
 import UIKit
 
-enum CurrentStatus {
-    case freshGame
-    case canPlay(move: Move)
-    case won
-    case lost
-}
+
 
 struct BoardViewModel {
+    private enum CurrentStatus {
+        case freshGame
+        case canPlay(move: Move)
+        case won
+        case lost
+    }
+    
     private var logicManager: LogicManager
     private var board: GameBoard
     private var goal: Int
@@ -83,7 +85,6 @@ struct BoardViewModel {
     private mutating func postMakingAMove(numberGenerationSuccessful: Bool, scoreFortheMove: Int) {
         if !numberGenerationSuccessful &&
             !self.checkIfMergeIsPossible() {
-            
             self.currentStatus = .lost
             return
         }
@@ -95,8 +96,31 @@ struct BoardViewModel {
     }
     
     private func checkIfMergeIsPossible() -> Bool {
-        
-        return true
+        for row in 0..<board.count {
+            for col in 0..<board.first!.count {
+                if (col + 1) < board.first!.count  &&
+                    (board[row][col] == board[row][col + 1])  {
+                    return true
+                }
+                    
+                if (col - 1) >= 0  &&
+                    (board[row][col] == board[row][col - 1]) {
+                    return true
+                }
+                
+                if (row + 1) < board.count &&
+                    (board[row][col] == board[row + 1][col]) {
+                    return true
+                }
+                
+                if (row - 1) >= 0  &&
+                    (board[row][col] == board[row - 1][col]) {
+                    return true
+                }
+            }
+   
+        }
+        return false
     }
     
     private mutating func checkIfUserWon() {
