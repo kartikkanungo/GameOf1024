@@ -41,7 +41,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="999" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-iK-eNt">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-iK-eNt">
                                         <rect key="frame" x="302" y="0.0" width="80" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="wff-Lx-wVO"/>
@@ -59,36 +59,56 @@
                                     <constraint firstAttribute="height" constant="40" id="r1k-Bk-8fg"/>
                                 </constraints>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yx5-er-omy">
-                                <rect key="frame" x="87" y="274" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yx5-er-omy">
+                                <rect key="frame" x="87" y="232" width="240" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PDz-FT-LIQ">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yx5-er-omy" secondAttribute="height" multiplier="1:1" id="ZkG-dA-a9A"/>
+                                    <constraint firstAttribute="width" constant="240" id="dfu-Pz-gpG"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="PDz-FT-LIQ">
+                                    <size key="itemSize" width="58" height="58"/>
+                                    <size key="estimatedItemSize" width="58" height="58"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="81H-Df-uDX">
-                                        <rect key="frame" x="56" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellIdentifer" id="81H-Df-uDX" customClass="TileCollectionViewCell" customModule="GameOf1024" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MDC-2Q-Fo0">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AaP-bd-uQ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJ5-ko-6zW">
+                                                    <rect key="frame" x="-1.5" y="12.5" width="53" height="25.5"/>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vJ5-ko-6zW" firstAttribute="centerY" secondItem="AaP-bd-uQ9" secondAttribute="centerY" id="9Ej-7s-htS"/>
+                                                <constraint firstItem="vJ5-ko-6zW" firstAttribute="centerX" secondItem="AaP-bd-uQ9" secondAttribute="centerX" id="TBm-PO-mje"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="50" height="50"/>
+                                        <connections>
+                                            <outlet property="tileValueLabel" destination="vJ5-ko-6zW" id="SvJ-wq-YT4"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGu-JA-dKI">
-                                <rect key="frame" x="20" y="738" width="374" height="52"/>
+                                <rect key="frame" x="20" y="746" width="374" height="52"/>
                                 <string key="text">INSTRUCTIONS: Swipe to move the tiles. When two tiles with the same number touch, they merge into one! You can continue to play further to form 1024 valued tile!</string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by Kartik Kanungo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fU3-DW-Q9r">
-                                <rect key="frame" x="16" y="806" width="382" height="40"/>
+                                <rect key="frame" x="16" y="814" width="382" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="E4Z-Jj-VxP"/>
                                 </constraints>
@@ -98,7 +118,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lGu-JA-dKI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1ka-th-xsp"/>
                             <constraint firstItem="8ru-4U-7kX" firstAttribute="top" secondItem="kSV-kw-cMD" secondAttribute="bottom" constant="8" id="4sG-bB-lz3"/>
@@ -110,11 +130,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lGu-JA-dKI" secondAttribute="trailing" constant="20" id="dDC-Dy-9A2"/>
                             <constraint firstItem="kSV-kw-cMD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="ggX-tQ-GAY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kSV-kw-cMD" secondAttribute="trailing" constant="16" id="kPA-eB-rFr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fU3-DW-Q9r" secondAttribute="bottom" constant="16" id="vjY-iC-cDe"/>
+                            <constraint firstItem="yx5-er-omy" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="uSt-ud-fae"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fU3-DW-Q9r" secondAttribute="bottom" constant="8" id="vjY-iC-cDe"/>
+                            <constraint firstItem="yx5-er-omy" firstAttribute="top" secondItem="8ru-4U-7kX" secondAttribute="bottom" constant="32" id="w7a-s3-ofa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8ru-4U-7kX" secondAttribute="trailing" constant="16" id="zum-In-o3s"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="boardCollectionView" destination="yx5-er-omy" id="ViG-pm-Rj1"/>
                         <outlet property="resetButton" destination="mKl-iK-eNt" id="zpf-AK-I6v"/>
                         <outlet property="scoreLabel" destination="WPh-eu-Tpm" id="6Jh-VC-n8B"/>
                     </connections>

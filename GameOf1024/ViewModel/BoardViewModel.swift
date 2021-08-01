@@ -17,7 +17,7 @@ protocol PostMoveDelegate {
 struct BoardViewModel {
     private enum CurrentStatus {
         case freshGame
-        case canPlay(move: Move)
+        case canPlay
         case won
         case lost
     }
@@ -28,20 +28,7 @@ struct BoardViewModel {
     private var currentScore: Int
     private var postMoveDelegate: PostMoveDelegate
     
-    private var currentStatus: CurrentStatus {
-        didSet {
-            switch currentStatus {
-            case .freshGame:
-                break
-            case let .canPlay(move):
-                self.execute(move: move)
-            case .lost:
-                self.postMoveDelegate.gameOver(message: "Sorry! You Lost!")
-            case .won:
-                self.postMoveDelegate.gameOver(message: "Congrats!")
-            }
-        }
-    }
+    private var currentStatus: CurrentStatus
     
     init(logicManager: LogicManager = LogicManager(),
          goal: Int = 1024,
@@ -69,13 +56,14 @@ extension BoardViewModel {
     public mutating func playMove(direction: Move) {
         switch currentStatus {
         case .freshGame:
-            self.currentStatus = .canPlay(move: direction)
-        case let .canPlay(direction):
-            self.currentStatus = .canPlay(move: direction)
+            self.currentStatus = .canPlay
+            self.execute(move: direction)
+        case .canPlay:
+            self.execute(move: direction)
         case .won:
-            break
+            self.postMoveDelegate.gameOver(message: "Congrats!")
         case .lost:
-            break
+            self.postMoveDelegate.gameOver(message: "Sorry! You Lost!")
         }
     }
     
