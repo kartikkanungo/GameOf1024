@@ -20,6 +20,6 @@ final class TileCollectionViewCell: UICollectionViewCell {
     
     func configure(value: Int) {
         applyTheme(value: value)
-        self.tileValueLabel.text = String(value)
+        self.tileValueLabel.text = value == 0 ? "" : String(value)
     }
 }
